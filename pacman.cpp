@@ -1,5 +1,5 @@
 
-                                        /*AUTHOR:- HEHE-VODOX
+                                        /*AUTHOR:- Kazi Istiak Toriqe
                                         CSE 102 LEVEL-1 TERM-1 FUCKIED UP PROJECT*/
 
 #include<windows.h>
@@ -3427,7 +3427,7 @@ void iSpecialKeyboard(unsigned char key)
 
 int main()
 {
-    iInitialize(570,630, "Path Finder");
+    iInitialize(570,630, "Maze Maker");
     return 0;
 }*/
 
