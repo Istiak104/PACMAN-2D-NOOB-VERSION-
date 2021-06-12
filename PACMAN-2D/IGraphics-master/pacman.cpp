@@ -1,20 +1,22 @@
 
-                                        /*AUTHOR:- HEHE-VODOX
-                                        CSE 102 LEVEL-1 TERM-1 FUCKIED UP PROJECT*/
+                                        /*AUTHOR:- KAZI ISTIAK UDDIN TORIQE ( With .)
+                                        CSE 102 LEVEL-1 TERM-1  PROJECT*/
 
 #include<windows.h>
-#include<bits/stdc++.h>
+#include<stdio.h>
 #include "iGraphics.h"
 #include<math.h>
-using namespace std;
+
 int MUSIC_strt,sound=0,rules,rules_time,qx=0,game_strt,posx,posy,GAMEOVER,NAMETAKEN,len,WIN,HIGH,level=0,new_x=120,lvt=0,q=0,aaa=0,ok=0,yes=0,nn,mm,maze=-1;
 char str[20],str2[20];
+
 FILE *file,*F;
+
 int screenWidth=1200,boxLength=30,screenHeight=810,pressed,keey[2],static_pacmouth,target_x,target_y,tim;
 int mini1,mini2,mini3,mini4,g_l,g_r,g_u,g_d,mini,maxi,maxi1,maxi2,maxi3,maxi4,flee_r,flee_l,flee_d,flee_u;
-int mazewidth=570,mazeheight=630,score;
-int scatter_mode,frightened_mode;
+int mazewidth=570,mazeheight=630,score,scatter_mode,frightened_mode;
 int hide_mode,speed_mode,pause_mode_for_ghosts,call,call2,speed=2,call3,call4,call5,call6,PAUSE,fire_l,fire_r,fire_u,fire_d,gameover_calltime,fire_x,fire_y,fire_mode;
+
 char DIE[4][10]={"gd1.bmp","gd2.bmp","gad1.bmp","gad2.bmp"};
 char death[4][8]={"e1.bmp","e2.bmp","e3.bmp","e4.bmp"};
 char pacman_pic[4][3][100]={{"p1l.bmp","p2l.bmp","p3l.bmp"},{"p1d.bmp","p2d.bmp","p3d.bmp"},{"p1r.bmp","p2r.bmp","p3r.bmp"},{"p1u.bmp","p2u.bmp","p3u.bmp"}};
@@ -25,12 +27,13 @@ char pink_[8][10]={"pi1-1.bmp","pi2-1.bmp","pi3-1.bmp","pi4-1.bmp","pi1-2.bmp","
 char FIRE[8][15]={"FIRE_R.bmp","FIRE_U.bmp","FIRE_L.bmp","FIRE_D.bmp"};
 char cover[3][15]={"BACKground.bmp"};
 char food[3][12]={"cherry.bmp","apple.bmp","candy.bmp"};
+
 char PD[11][10]={"pd1.bmp","pd2.bmp","pd3.bmp","pd4.bmp","pd5.bmp","pd6.bmp","pd7.bmp","pd8.bmp","pd9.bmp","pd10.bmp","pd11.bmp"};
-int pac,pac_no;
-int die=3;
+int pac,pac_no,die=3;
 int start,resume,pause_game,continue_game;
 int music_1,music_2,music_3,music_4,music_5,music_6;
 char s[12],t[12];
+
 typedef struct{
     int right=0;
     int left=0;
@@ -41,7 +44,9 @@ typedef struct{
     int pox=150+(screenHeight-mazeheight)/2;
     int poy=30+(screenHeight-mazeheight)/2;
 }pacman;
+
 pacman pacc;
+
 typedef struct{
     int px;
     int py;
@@ -60,8 +65,10 @@ typedef struct{
     int scatter_y;
     int a[20][20];
 }ghost;
+
 ghost blinky,inky,pinky,clyde;
 ghost V[]={blinky,pinky,inky,clyde};
+
 void pacman_moveleft();
 void pacman_move_down();
 void pacman_move_up();
@@ -70,12 +77,16 @@ void pacman_move();
 void ghost_move();
 void initialize();
 void option_show();
+
 int ara[7][10][24][22];
+
 typedef struct{
     char score[12];
     char name[20];
 }highscore;
+
 highscore h[12];
+
 void chk_ara()
 {
     if(start==1){
@@ -93,7 +104,6 @@ void chk_ara()
                 }
                 if(cnt==10) break;
             }
-        //cout<<cnt<<endl;
         if(cnt==0)
         {
             level++;
@@ -137,6 +147,8 @@ void chk_ara()
         }
     }
 }
+
+
 void getHighscore()
 {
     file=fopen("highscores.txt","r");
@@ -147,6 +159,7 @@ void getHighscore()
     }
     fclose(file);
 }
+
 
 void putHighscore()
 {
@@ -178,6 +191,8 @@ void Sort_Highscore()
         }
     }
 }
+
+
 void initialize()
 {
     screenWidth=870,boxLength=30,screenHeight=810,pressed=0,keey[2]={0},static_pacmouth=0,target_x=0,target_y=0,tim=0,aaa=0;
@@ -194,7 +209,8 @@ void initialize()
     pacc.pox=150+(screenHeight-mazeheight)/2;
     pacc.poy=30+(screenHeight-mazeheight)/2;
     pac_no=0;
-    pac=0;
+    
+	pac=0;
         V[0].px=350;
         V[0].py=450;
         V[0]._x;
@@ -205,7 +221,8 @@ void initialize()
         V[0].dir='k';
         V[0].ghost_mode=1;
         V[0].die_mode=2;
-        V[1].px=330;
+        
+	V[1].px=330;
         V[1].py=390;
         V[1]._x;
         V[1]._y;
@@ -215,7 +232,8 @@ void initialize()
         V[1].dir='k';
         V[1].ghost_mode=1;
         V[1].die_mode=0;
-        V[2].px=360;
+        
+	V[2].px=360;
         V[2].py=390;
         V[2]._x;
         V[2]._y;
@@ -225,7 +243,8 @@ void initialize()
         V[2].dir='k';
         V[2].ghost_mode=1;
         V[2].die_mode=2;
-        V[3].px=390;
+        
+	V[3].px=390;
         V[3].py=390;
         V[3]._x;
         V[3]._y;
@@ -235,7 +254,8 @@ void initialize()
         V[3].dir='k';
         V[3].ghost_mode=1;
         V[3].die_mode=2;
-        V[0].initial=0;
+        
+	V[0].initial=0;
         V[1].initial=0;
         V[2].initial=0;
         V[3].initial=0;
@@ -988,6 +1008,8 @@ void music()
         music_6=0;
     }
 }
+
+
 void save_game()
 {
     file=fopen("S.txt","w");
@@ -1016,6 +1038,8 @@ void save_game()
     fprintf(file,"%d\n%d\n%d\n",level,maze);
     fclose(file);
 }
+
+
 void load_game()
 {
         file=fopen("S.txt","r");
@@ -1044,11 +1068,17 @@ void load_game()
         fscanf(file,"%d%d",&level,&maze);
         fclose(file);
 }
+
+
+
 void strt_()
 {
     posx+=3;
     posy=360;
 }
+
+
+
 void pac_type()
 {
     if((pacc.left||pacc.right||pacc.down||pacc.up))
@@ -1063,12 +1093,12 @@ void pac_type()
     else if(game_strt==0)
     {
         pac++;
-        if(pac>2)
-        {
-            pac=0;
-        }
+        if(pac>2)   pac=0;
     }
 }
+
+
+
 void pacman_move_right(){
     if(pacc.right)
     {
@@ -1138,12 +1168,14 @@ void pacman_move_right(){
         else
         {
             static_pacmouth=1;
-            pacc.right=0;
-            pac=2;
+            pacc.right=0; pac=2;
 
         }
     }
 }
+
+
+
 void pacman_move_up(){
     if(pacc.up)
     {
@@ -1194,17 +1226,13 @@ void pacman_move_up(){
                 }
                 if(ara[maze][level][pacc.yy+1][pacc.xx]==6)
                 {
-                    score+=30;
-                    pause_mode_for_ghosts=1;
-                    music_2=1;
-                    music();
+                    score+=30; pause_mode_for_ghosts=1;
+                    music_2=1; music();
                 }
                 if(ara[maze][level][pacc.yy+1][pacc.xx]==7)
                 {
-                    score+=30;
-                    hide_mode=1;
-                    music_2=1;
-                    music();
+                    score+=30; hide_mode=1;
+                    music_2=1; music();
                 }
                 ara[maze][level][pacc.yy+1][pacc.xx]=2;
             }
@@ -1213,12 +1241,15 @@ void pacman_move_up(){
         else
         {
             static_pacmouth=1;
-            pacc.up=0;
-            pac=2;
+            pacc.up=0; pac=2;
 
         }
     }
 }
+
+
+
+
 void pacman_move_down(){
     if(pacc.down){
         pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
@@ -1242,43 +1273,31 @@ void pacman_move_down(){
                 if(ara[maze][level][pacc.yy][pacc.xx]==3)
                 {
                     score+=30;
-                    music_3=1;
-                    music();
+                    music_3=1; music();
                     frightened_mode=1;
                     if(V[0].die_mode!=1) V[0].ghost_mode=0;
                     if(V[1].die_mode!=1) V[1].ghost_mode=0;
                     if(V[2].die_mode!=1) V[2].ghost_mode=0;
                     if(V[3].die_mode!=1) V[3].ghost_mode=0;
                     for(int idx=0;idx<4;idx++)
-                    {
                         V[idx].initial=0;
-                    }
-
                 }
                 if(ara[maze][level][pacc.yy][pacc.xx]==5)
                 {
-                    score+=30;
-                    speed_mode=1;
-                    music_2=1;
-                    music();
+                    score+=30; speed_mode=1;
+                    music_2=1; music();
                     if(pacc.poy%3)
-                    {
                         pacc.poy+=pacc.poy-pacc.poy%3;
-                    }
                 }
                 if(ara[maze][level][pacc.yy][pacc.xx]==6)
                 {
-                    score+=30;
-                    music_2=1;
-                    music();
-                    pause_mode_for_ghosts=1;
+                    score+=30; music_2=1;
+                    music(); pause_mode_for_ghosts=1;
                 }
                 if(ara[maze][level][pacc.yy][pacc.xx]==7)
                 {
-                    score+=30;
-                    hide_mode=1;
-                    music_2=1;
-                    music();
+                    score+=30; hide_mode=1;
+                    music_2=1; music();
                 }
                 ara[maze][level][pacc.yy][pacc.xx]=2;
             }
@@ -1286,11 +1305,14 @@ void pacman_move_down(){
         else
         {
             static_pacmouth=1;
-            pac=2;
-            pacc.down=0;
+            pac=2; pacc.down=0;
         }
     }
 }
+
+
+
+
 void pacman_move_left(){
     if(pacc.left)
     {
@@ -1315,43 +1337,33 @@ void pacman_move_left(){
                 }
                 if(ara[maze][level][pacc.yy][pacc.xx]==3)
                 {
-                    music_3=1;
                     score+=30;
-                    music();
+                    music_3=1; music();
                     frightened_mode=1;
                     if(V[0].die_mode!=1) V[0].ghost_mode=0;
                     if(V[1].die_mode!=1) V[1].ghost_mode=0;
                     if(V[2].die_mode!=1) V[2].ghost_mode=0;
                     if(V[3].die_mode!=1) V[3].ghost_mode=0;
                     for(int idx=0;idx<4;idx++)
-                    {
                         V[idx].initial=0;
-                    }
-
                 }
                 if(ara[maze][level][pacc.yy][pacc.xx]==5)
                 {
-                    score+=30;
-                    speed_mode=1;
-                    music_2=1;
-                    music();
+                    score+=30; speed_mode=1;
+                    music_2=1; music();
                     if(pacc.pox%3)
-                    {
                         pacc.pox-=pacc.pox-pacc.pox%3;
-                    }
                 }
                 if(ara[maze][level][pacc.yy][pacc.xx]==6)
                 {
-                    score+=30;
-                    music_2=1;
-                    music();
+                    score+=30
+		    music_2=1; music();
                     pause_mode_for_ghosts=1;
                 }
                 if(ara[maze][level][pacc.yy][pacc.xx]==7)
                 {
                     score+=30;
-                    music_2=1;
-                    music();
+		    music_2=1; music();
                     hide_mode=1;
                 }
                 ara[maze][level][pacc.yy][pacc.xx]=2;
@@ -1360,12 +1372,15 @@ void pacman_move_left(){
         }
         else
         {
-            static_pacmouth=1;
-            pac=2;
+            static_pacmouth=1; pac=2;
             pacc.left=0;
         }
     }
 }
+
+
+
+
 void pacman_move()
 {
     chk_ara();
@@ -1399,8 +1414,7 @@ void pacman_move()
                     pacc.yy=(pacc.poy-1-(screenHeight-mazeheight)/2)/boxLength;
                     if(pacc.xx==9&&pacc.yy==11)
                     {
-                        keey[1]=keey[0];
-                        pac=2;
+                        keey[1]=keey[0]; pac=2;
                     }
                     else
                     {
@@ -1421,28 +1435,19 @@ void pacman_move()
                     {
                         pac_no=2;
                         pacman_move_right();
-                        if(pacc.right==0)
-                        {
-                            keey[0]=0;
-                        }
+                        if(pacc.right==0) keey[0]=0;
                     }
                 }
                 if(keey[0]==2&&keey[1]==1)
                 {
                     pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
                     pacc.yy=(pacc.poy-(screenHeight-mazeheight)/2)/boxLength;
-                    if(ara[maze][level][pacc.yy][pacc.xx+1]!=1&&pacc.poy%boxLength==0)
-                    {
-                        keey[0]=keey[1];
-                    }
+                    if(ara[maze][level][pacc.yy][pacc.xx+1]!=1&&pacc.poy%boxLength==0) keey[0]=keey[1];
                     else
                     {
                         pac_no=3;
                         pacman_move_up();
-                        if(pacc.up==0)
-                        {
-                            keey[0]=0;
-                        }
+                        if(pacc.up==0) keey[0]=0; 
                     }
                 }
                 if(keey[0]==1&&keey[1]==3)
@@ -1461,28 +1466,19 @@ void pacman_move()
                 {
                     pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
                     pacc.yy=(pacc.poy-1-(screenHeight-mazeheight)/2)/boxLength;
-                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.pox%boxLength==0)
-                    {
-                        keey[0]=keey[1];
-                    }
+                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.pox%boxLength==0)  keey[0]=keey[1];
                     else
                     {
                         pac_no=2;
                         pacman_move_right();
-                        if(pacc.right==0)
-                        {
-                            keey[0]=0;
-                        }
+                        if(pacc.right==0) keey[0]=0;
                     }
                 }
                 if(keey[0]==4&&keey[1]==1)
                 {
                     pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
                     pacc.yy=(pacc.poy-(screenHeight-mazeheight)/2)/boxLength;
-                    if(ara[maze][level][pacc.yy][pacc.xx+1]!=1&&pacc.poy%boxLength==0)
-                    {
-                        keey[0]=keey[1];
-                    }
+                    if(ara[maze][level][pacc.yy][pacc.xx+1]!=1&&pacc.poy%boxLength==0) keey[0]=keey[1];
                     else
                     {
                         pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
@@ -1504,37 +1500,24 @@ void pacman_move()
                 {
                     pacc.xx=(pacc.pox-1-(screenHeight-mazeheight)/2)/boxLength;
                     pacc.yy=(pacc.poy-(screenHeight-mazeheight)/2)/boxLength;
-                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.poy%boxLength==0)
-                    {
-                        keey[0]=keey[1];
-                    }
+                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.poy%boxLength==0) keey[0]=keey[1];
                     else
                     {
                         pac_no=3;
                         pacman_move_up();
-                        if(pacc.up==0)
-                        {
-                            keey[0]=0;
-                        }
+                        if(pacc.up==0) keey[0]=0;
                     }
                 }
                 if(keey[0]==3&&keey[1]==2)
                 {
                     pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
                     pacc.yy=(pacc.poy-(screenHeight-mazeheight)/2)/boxLength;
-                    if(ara[maze][level][pacc.yy+1][pacc.xx]!=1&&pacc.pox%boxLength==0)
-
-                    {
-                        keey[0]=keey[1];
-                    }
+                    if(ara[maze][level][pacc.yy+1][pacc.xx]!=1&&pacc.pox%boxLength==0) keey[0]=keey[1];
                     else
                     {
                         pac_no=0;
                         pacman_move_left();
-                        if(pacc.left==0)
-                        {
-                            keey[0]=0;
-                        }
+                        if(pacc.left==0) keey[0]=0;
                     }
                 }
                 if(keey[0]==2&&keey[1]==4)
@@ -1553,10 +1536,7 @@ void pacman_move()
                 {
                     pacc.xx=(pacc.pox-1-(screenHeight-mazeheight)/2)/boxLength;
                     pacc.yy=(pacc.poy-(screenHeight-mazeheight)/2)/boxLength;
-                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.poy%boxLength==0)
-                    {
-                        keey[0]=keey[1];
-                    }
+                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.poy%boxLength==0) keey[0]=keey[1];
                     else
                     {
                         pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
@@ -1569,10 +1549,7 @@ void pacman_move()
                         else{
                             pac_no=1;
                             pacman_move_down();
-                            if(pacc.down==0)
-                            {
-                                keey[0]=0;
-                            }
+                            if(pacc.down==0) keey[0]=0;
                         }
                     }
                 }
@@ -1580,18 +1557,12 @@ void pacman_move()
                 {
                     pacc.xx=(pacc.pox-(screenHeight-mazeheight)/2)/boxLength;
                     pacc.yy=(pacc.poy-1-(screenHeight-mazeheight)/2)/boxLength;
-                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.pox%boxLength==0)
-                    {
-                        keey[0]=keey[1];
-                    }
+                    if(ara[maze][level][pacc.yy][pacc.xx]!=1&&pacc.pox%boxLength==0) keey[0]=keey[1];
                     else
                     {
                         pac_no=0;
                         pacman_move_left();
-                        if(pacc.left==0)
-                        {
-                            keey[0]=0;
-                        }
+                        if(pacc.left==0)  keey[0]=0;
                     }
                 }
                 if(call3>500) speed_mode=0;
@@ -1604,6 +1575,11 @@ void pacman_move()
 
 
 }
+
+
+
+
+
 void ghost_move()
 {
     if(die&&WIN!=1&&q==0){
@@ -1635,90 +1611,66 @@ void ghost_move()
                     {
                         if(i==0&&V[i].ghost_mode)
                         {
-                            target_x=pacc.pox;
-                            target_y=pacc.poy;
+                            target_x=pacc.pox;    target_y=pacc.poy;
                         }
                         if(i==1&&V[i].ghost_mode)
                         {
                             if(pacc.right)
                             {
-                                target_x=pacc.pox+120;
-                                target_y=pacc.poy;
+                                target_x=pacc.pox+120;    target_y=pacc.poy;
                             }
                             else if(pacc.left)
                             {
-                                target_x=pacc.pox-120;
-                                target_y=pacc.poy;
+                                target_x=pacc.pox-120;    target_y=pacc.poy;
                             }
                             else if(pacc.up)
                             {
-                                target_x=pacc.pox;
-                                target_y=pacc.poy+120;
+                                target_x=pacc.pox;    target_y=pacc.poy+120;
                             }
                             else if(pacc.down)
                             {
-                                target_x=pacc.pox;
-                                target_y=pacc.poy-120;
+                                target_x=pacc.pox;    target_y=pacc.poy-120;
                             }
                             else
                             {
-                                target_x=pacc.pox+60;
-                                target_y=pacc.poy+60;
+                                target_x=pacc.pox+60;    target_y=pacc.poy+60;
                             }
                         }
                         if(i==2&&V[i].ghost_mode)
                         {
                             target_x=(2*pacc.pox-V[i].px);
                             target_y=(2*pacc.poy-V[i].py);
-                            if(target_x<(screenHeight-mazeheight)/2)
-                            {
-                                target_x=(screenHeight-mazeheight)/2;
-                            }
-                            if(target_x>540+(screenHeight-mazeheight)/2)
-                            {
-                                target_x=540+(screenHeight-mazeheight)/2;
-                            }
-                            if(target_y<(screenHeight-mazeheight)/2)
-                            {
-                                target_y=(screenHeight-mazeheight)/2;
-                            }
-                            if(target_y>630+(screenHeight-mazeheight)/2)
-                            {
-                                target_y=630+(screenHeight-mazeheight)/2;
-                            }
+                            if(target_x<(screenHeight-mazeheight)/2)    target_x=(screenHeight-mazeheight)/2;
+                            if(target_x>540+(screenHeight-mazeheight)/2)    target_x=540+(screenHeight-mazeheight)/2;
+                            if(target_y<(screenHeight-mazeheight)/2)    target_y=(screenHeight-mazeheight)/2;
+                            if(target_y>630+(screenHeight-mazeheight)/2)    target_y=630+(screenHeight-mazeheight)/2;
                         }
                         if(i==3&&V[i].ghost_mode)
                         {
                             if(pacc.right)
                             {
-                                target_x=pacc.pox-120;
-                                target_y=pacc.poy;
+                                target_x=pacc.pox-120;    target_y=pacc.poy;
                             }
                             else if(pacc.left)
                             {
-                                target_x=pacc.pox+120;
-                                target_y=pacc.poy;
+                                target_x=pacc.pox+120;     target_y=pacc.poy;
                             }
                             else if(pacc.up)
                             {
-                                target_x=pacc.pox;
-                                target_y=pacc.poy-120;
+                                target_x=pacc.pox;   target_y=pacc.poy-120;
                             }
                             else if(pacc.down)
                             {
-                                target_x=pacc.pox;
-                                target_y=pacc.poy+120;
+                                target_x=pacc.pox;   target_y=pacc.poy+120;
                             }
                             else
                             {
-                                target_x=pacc.pox+60;
-                                target_y=pacc.poy+60;
+                                target_x=pacc.pox+60;   target_y=pacc.poy+60;
                             }
                         }
                         if((call>=0&&call<=500||hide_mode)&&V[i].ghost_mode)
                         {
-                            target_x=V[i].scatter_x;
-                            target_y=V[i].scatter_y;
+                            target_x=V[i].scatter_x;   target_y=V[i].scatter_y;
                         }
                         if(V[i].die_mode==1&&V[i].px==360&&V[i].py==420)
                         {
@@ -1863,13 +1815,9 @@ void ghost_move()
                                     if(V[i].px%2) V[i].px+=1;
                                     else V[i].px+=2;
                                 }
-                                if(V[i].state>=1000)
-                                {
-                                    V[i].state=0;
-                                }
+                                if(V[i].state>=1000)    V[i].state=0;
                                 V[i].state++;
-                                if((V[i].state/4)%2)
-                                    V[i].no=0;
+                                if((V[i].state/4)%2)    V[i].no=0;
                                 else V[i].no=4;
                             }
                         }
@@ -1898,15 +1846,9 @@ void ghost_move()
                                     if(V[i].px%2) V[i].px-=1;
                                     else V[i].px-=2;
                                 }
-                                if(V[i].state>=1000)
-                                {
-                                    V[i].state=0;
-                                }
+                                if(V[i].state>=1000)  V[i].state=0;
                                 V[i].state++;
-                                if((V[i].state/4)%2)
-                                {
-                                    V[i].no=2;
-                                }
+                                if((V[i].state/4)%2) V[i].no=2;
                                 else V[i].no=6;
                             }
                         }
@@ -1935,10 +1877,7 @@ void ghost_move()
                                     if(V[i].py%2) V[i].py+=1;
                                     else V[i].py+=2;
                                 }
-                                if(V[i].state>=1000)
-                                {
-                                    V[i].state=0;
-                                }
+                                if(V[i].state>=1000)  V[i].state=0;
                                 V[i].state++;
                                 if((V[i].state/4)%2) V[i].no=1;
                                 else V[i].no=5;
@@ -1971,10 +1910,7 @@ void ghost_move()
                                     if(V[i].py%2) V[i].py-=1;
                                     else V[i].py-=2;
                                 }
-                                if(V[i].state>=1000)
-                                {
-                                    V[i].state=0;
-                                }
+                                if(V[i].state>=1000) V[i].state=0;
                                 V[i].state++;
                                 if((V[i].state/4)%2)
                                     V[i].no=3;
@@ -2070,22 +2006,11 @@ void ghost_move()
                         if(V[i].px+boxLength>570+(screenHeight-mazeheight)/2)
                         {
                             V[i].px=(screenHeight-mazeheight)/2;
-                            if(V[i].state>=1000)
-                            {
-                                V[i].state=0;
-                            }
+                            if(V[i].state>=1000) V[i].state=0;
                             V[i].state++;
-                            //V[i].initial=0;
-                            //V[i].dir='k';
-                            if(V[i].die_mode==1)
-                            {
-                                V[i].no=0;
-                            }
+                            if(V[i].die_mode==1) V[i].no=0;
                             else if(V[i].die_mode!=1) {
-                                if((V[i].state/4)%2)
-                                {
-                                    V[i].no=0;
-                                }
+                                if((V[i].state/4)%2) V[i].no=0;
                                 else V[i].no=4;
                             }
                         }
@@ -2094,20 +2019,11 @@ void ghost_move()
                             //V[i].initial=0;
                             //V[i].dir='k';
                             V[i].px=570-boxLength+(screenHeight-mazeheight)/2;
-                            if(V[i].state>=1000)
-                            {
-                                V[i].state=0;
-                            }
+                            if(V[i].state>=1000) V[i].state=0;
                             V[i].state++;
-                            if(V[i].die_mode==1)
-                            {
-                                V[i].no=2;
-                            }
+                            if(V[i].die_mode==1) V[i].no=2;
                             else if(V[i].die_mode!=1){
-                                if((V[i].state/4)%2)
-                                {
-                                    V[i].no=2;
-                                }
+                                if((V[i].state/4)%2)  V[i].no=2;
                                 else V[i].no=6;
                             }
                         }
@@ -2123,8 +2039,7 @@ void ghost_move()
                     {
                             if(i==0&&(V[i].die_mode==0||V[i].die_mode==2)&&V[i].ghost_mode==0)
                             {
-                                target_x=pacc.pox;
-                                target_y=pacc.poy;
+                                target_x=pacc.pox;    target_y=pacc.poy;
                                 V[i].a[11][9]=1;
                             }
                             if(i==1&&(V[i].die_mode==0||V[i].die_mode==2)&&V[i].ghost_mode==0)
@@ -2133,28 +2048,23 @@ void ghost_move()
                                 V[i].a[11][9]=1;
                                 if(pacc.right)
                                 {
-                                    target_x=pacc.pox+120;
-                                    target_y=pacc.poy;
+                                    target_x=pacc.pox+120;    target_y=pacc.poy;
                                 }
                                 else if(pacc.left)
                                 {
-                                    target_x=pacc.pox-120;
-                                    target_y=pacc.poy;
+                                    target_x=pacc.pox-120;    target_y=pacc.poy;
                                 }
                                 else if(pacc.up)
                                 {
-                                    target_x=pacc.pox;
-                                    target_y=pacc.poy+120;
+                                    target_x=pacc.pox;    target_y=pacc.poy+120;
                                 }
                                 else if(pacc.down)
                                 {
-                                    target_x=pacc.pox;
-                                    target_y=pacc.poy-120;
+                                    target_x=pacc.pox;    target_y=pacc.poy-120;
                                 }
                                 else
                                 {
-                                    target_x=pacc.pox+60;
-                                    target_y=pacc.poy+60;
+                                    target_x=pacc.pox+60;    target_y=pacc.poy+60;
                                 }
                             }
                             if(i==2&&(V[i].die_mode==0||V[i].die_mode==2)&&V[i].ghost_mode==0)
@@ -2184,28 +2094,23 @@ void ghost_move()
                                 V[i].a[11][9]=1;
                                 if(pacc.right)
                                 {
-                                    target_x=pacc.pox-120;
-                                    target_y=pacc.poy;
+                                    target_x=pacc.pox-120;    target_y=pacc.poy;
                                 }
                                 else if(pacc.left)
                                 {
-                                    target_x=pacc.pox+120;
-                                    target_y=pacc.poy;
+                                    target_x=pacc.pox+120;    target_y=pacc.poy;
                                 }
                                 else if(pacc.up)
                                 {
-                                    target_x=pacc.pox;
-                                    target_y=pacc.poy-120;
+                                    target_x=pacc.pox;    target_y=pacc.poy-120;
                                 }
                                 else if(pacc.down)
                                 {
-                                    target_x=pacc.pox;
-                                    target_y=pacc.poy+120;
+                                    target_x=pacc.pox;    target_y=pacc.poy+120;
                                 }
                                 else
                                 {
-                                    target_x=pacc.pox+60;
-                                    target_y=pacc.poy+60;
+                                    target_x=pacc.pox+60;    target_y=pacc.poy+60;
                                 }
                             }
                             maxi=0;
@@ -2325,10 +2230,7 @@ void ghost_move()
                                 V[i]._y=(V[i].py-(screenHeight-mazeheight)/2)/boxLength;
                                 if(ara[maze][level][V[i]._y][V[i]._x+1]!=1&&V[i].py%boxLength==0){
                                     V[i].dir='r';
-                                    if(V[i].state>=1000)
-                                    {
-                                        V[i].state=0;
-                                    }
+                                    if(V[i].state>=1000)   V[i].state=0;
                                     V[i].state++;
                                     V[i].px++;
                                 }
@@ -2339,10 +2241,7 @@ void ghost_move()
                                 V[i]._y=(V[i].py-(screenHeight-mazeheight)/2)/boxLength;
                                 if(ara[maze][level][V[i]._y][V[i]._x]!=1&&V[i].py%boxLength==0){
                                     V[i].dir='l';
-                                    if(V[i].state>=1000)
-                                    {
-                                        V[i].state=0;
-                                    }
+                                    if(V[i].state>=1000)    V[i].state=0;
                                     V[i].state++;
                                     V[i].px--;
                                 }
@@ -2353,10 +2252,7 @@ void ghost_move()
                                 V[i]._y=(V[i].py-(screenHeight-mazeheight)/2)/boxLength;
                                 if(ara[maze][level][V[i]._y+1][V[i]._x]!=1&&V[i].px%boxLength==0){
                                     V[i].dir='u';
-                                    if(V[i].state>=1000)
-                                    {
-                                        V[i].state=0;
-                                    }
+                                    if(V[i].state>=1000)  V[i].state=0;
                                     V[i].state++;
                                     V[i].py++;
 
@@ -2368,10 +2264,7 @@ void ghost_move()
                                 V[i]._y=(V[i].py-1-(screenHeight-mazeheight)/2)/boxLength;
                                 if(ara[maze][level][V[i]._y][V[i]._x]!=1&&V[i].px%boxLength==0){
                                     V[i].dir='d';
-                                    if(V[i].state>=1000)
-                                    {
-                                        V[i].state=0;
-                                    }
+                                    if(V[i].state>=1000) V[i].state=0;
                                     V[i].state++;
                                     V[i].py--;
                                 }
@@ -2379,10 +2272,7 @@ void ghost_move()
                             if(V[i].px+boxLength>570+(screenHeight-mazeheight)/2&&V[i].ghost_mode!=1&&V[i].die_mode!=1)
                             {
                                 V[i].px=(screenHeight-mazeheight)/2;
-                                if(V[i].state>=1000)
-                                {
-                                    V[i].state=0;
-                                }
+                                if(V[i].state>=1000)  V[i].state=0;
                                 V[i].state++;
                                 //V[i].initial=0;
                                 //V[i].dir='k';
@@ -2391,10 +2281,7 @@ void ghost_move()
                             {
                                 //V[i].initial=0;
                                 V[i].px=570-boxLength+(screenHeight-mazeheight)/2;
-                                if(V[i].state>=1000)
-                                {
-                                    V[i].state=0;
-                                }
+                                if(V[i].state>=1000)  V[i].state=0;
                                 V[i].state++;
                                 //V[i].dir='k';
                             }
@@ -2405,34 +2292,23 @@ void ghost_move()
             {
                 if(fire_l)
                 {
-                    if(fire_x%3)
-                    {
-                        fire_x-=(fire_x%3);
-                    }
+                    if(fire_x%3) fire_x-=(fire_x%3);
                     else fire_x-=3;
                 }
                 if(fire_r)
                 {
-                    if(fire_x%3)
-                    {
-                        fire_x+=(3-fire_x%3);
-                    }
+                    if(fire_x%3) fire_x+=(3-fire_x%3);
+
                     else fire_x+=3;
                 }
                 if(fire_u)
                 {
-                    if(fire_y%3)
-                    {
-                        fire_y+=(3-fire_y%3);
-                    }
+                    if(fire_y%3) fire_y+=(3-fire_y%3);
                     else fire_y+=3;
                 }
                 if(fire_d)
                 {
-                    if(fire_y%3)
-                    {
-                        fire_y-=(fire_y%3);
-                    }
+                    if(fire_y%3) fire_y-=(fire_y%3);
                     else fire_y-=3;
                 }
             }
@@ -2524,11 +2400,14 @@ void ghost_move()
         }
     }
 }
+
+
 void fm(int x,int y)
 {
-    nn=x;
-    mm=810-y;
+    nn=x;  mm=810-y;
 }
+
+
 void DRAW()
 {
         if(q==1)
@@ -2536,8 +2415,7 @@ void DRAW()
             lvt++;
             if(lvt==200)
             {
-                lvt=0;
-                q=0;
+                lvt=0;  q=0;
             }
         }
         int x=0;
@@ -2761,6 +2639,8 @@ void DRAW()
             iShowBMP2(850,280,"sound off.bmp",0);
         }
 }
+
+
 void show_score()
 {
     int x=460,y=640;
@@ -2778,6 +2658,8 @@ void show_score()
     }
     iText(120,155,"PRESS C TO CONTINUE",GLUT_BITMAP_HELVETICA_18);
 }
+
+
 void MENU1()
 {
                 iShowBMP(0,0,cover[0]);
@@ -2826,6 +2708,9 @@ void MENU1()
                 iSetColor(255,255,255);
                 iText(20,80,"Press < to see rules",GLUT_BITMAP_HELVETICA_18);
 }
+
+
+
 void iDraw()
 {
     iClear();
@@ -2993,6 +2878,9 @@ void iDraw()
     }
 
 }
+
+
+
 void option_show()
 {
     iShowBMP(50,500,"CLASSIC.bmp");
@@ -3060,6 +2948,9 @@ void option_show()
     }
 
 }
+
+
+
 void iMouseMove(int buttonx, int buttony)
 {
 
@@ -3188,6 +3079,8 @@ void iMouse(int button, int state, int mx, int my){
     //cout<<mx<<" "<<my<<endl;
 }
 
+
+
 void iKeyboard(unsigned char key)
 {
     if(!NAMETAKEN&&!HIGH&&GAMEOVER==500&&maze==0)
@@ -3231,6 +3124,8 @@ void iKeyboard(unsigned char key)
     }
 
 }
+
+
 
 void iSpecialKeyboard(unsigned char key)
 {
@@ -3301,11 +3196,17 @@ void iSpecialKeyboard(unsigned char key)
     }
 	//place your codes for other keys here
 }
+
+
+
 void change()
 {
     if(resume||start) tim++;
     //printf("%d\n",tim );
 }
+
+
+
 int main()
 {
         iSetTimer(30,strt_);
